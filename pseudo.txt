@@ -1,0 +1,46 @@
+Connect to the database
+
+Get a cursor for the database
+
+LOAD studentDatabase FROM "students.db"
+data_table = {
+                StudentID: X
+                Name: X
+                GPA: X
+                GraduationYear: X
+                Age: X
+                Major: X
+                CurrentYear: X
+                Degree: X
+}
+
+While >7
+#start a CRUD program
+1 = "create"
+2 = "read"
+3 = "update"
+4 = "delete"
+5 = "display"
+6 = "exit"
+
+If == 1
+    CALL create (studentDatabase)
+Elif == 2
+    CALL read (studentDatabase)
+Elif == 3
+    CALL update (studentDatabase)
+Elif == 4
+    CALL delete (studentDatabase)
+Elif == 5
+    CALL display (studentDatabase)
+Elif ==
+    Exit
+Else
+    PRINT "invalid"
+
+endif
+endwhile
+endmain
+Commit changes to the database
+
+Close the connection to the database
