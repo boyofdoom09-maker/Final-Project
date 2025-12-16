@@ -53,20 +53,51 @@ def read(cur):
     else:
         return None
 
-#set up update function
 def update(cur):
+    id_val = input("Enter student ID to update: ") 
+    # Use consistent naming (id vs ID) based on your table creation
+    cur.execute("SELECT id FROM entries WHERE id=?", (id_val,))
+    if cur.fetchone():
+        # Inputting data
+        name = input("Enter new name: ")
+        gpa = input("Enter new GPA: ")
+        grad_year = input("Enter new Graduation Year: ")
+        age = input("Enter new Age: ")
+        major = input("Enter new Major: ")
+        degree = input("Enter new Degree: ")
+
+        cur.execute(
+            "UPDATE entries SET name=?, gpa=?, graduationyear=?, age=?, major=?, degree=? WHERE id=?",
+            (name, gpa, grad_year, age, major, degree, id_val)
+        )
+        print("Record updated successfully.")
+    else:
+        print(f"Error: Student ID {id_val} not found.")
 
 def delete(cur):
-# set up delete function
+    id_val = input("Enter student ID to delete: ")
+    # Check existence first for better error reporting
+    cur.execute("SELECT id FROM entries WHERE id=?", (id_val,))
+    if cur.fetchone():
+        cur.execute("DELETE FROM entries WHERE id=?", (id_val,))
+        print("Record deleted successfully.")
+    else:
+        print(f"Error: Student ID {id_val} not found.")
+
+def read(cur):
+    id_val = input("Enter student ID to read: ")
+    cur.execute("SELECT * FROM entries WHERE id=?", (id_val,))
+    row = cur.fetchone()
+    if row:
+        print(row)
+    else:
+        print(f"Error: Student ID {id_val} not found.")
 
 def view(cur):
-    cur.execute("SELECT * FROM Entries")
+    cur.execute("SELECT * FROM entries")
     rows = cur.fetchall()
-
-    print("\n--- CONTACT LIST ---")
-    for row in rows:
-        print(f"ID: {row[0]} | name: {row[1]} | GPA: {row[2]} | GraduationYear: {row[3]} | Age: {row[4]} | Major: {row[5]} | Degree: {row[6]}")
-    print("---------------------\n")
-
-if __name__ == "__main__":
-    main()
+    if rows:
+        for row in rows:
+            print(row)
+    else:
+        print("No entries found in the database.")
