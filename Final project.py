@@ -32,8 +32,7 @@ def create(cur):
     GraduationYear = input("Enter your Graduation Year: ")
     Age = input("Enter your Age: ")
     Major = input("Enter your Major: ")
-    CurrentYear = input("Enter your Current Year: ")
     Degree = input("Enter your in progress Degree: ")
 
 
-    cur.execute("INSERT INTO Entries (ID, name, GPA, GraduationYear, Age, Major, CurrentYear, Degree) VALUES (?, ?)", (ID, name, GPA, GraduationYear, Age, Major, CurrentYear, Degree))
+    cur.execute("INSERT INTO Entries (ID, name, GPA, GraduationYear, Age, Major, Degree) VALUES (?, ?)", (ID, name, GPA, GraduationYear, Age, Major, Degree))
