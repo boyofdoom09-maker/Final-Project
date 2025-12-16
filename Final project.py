@@ -1,0 +1,39 @@
+import sqlite3
+
+def main():
+    database_name = "student.db"
+    conn = sqlite3.connect(database_name)
+    cur = conn.cursor()
+
+    while True:
+        choose = input("Would you like to 1 create, 2 update, 3 delete, 4 read, 5 to view all data, or 6 to exit.")
+        if choose == '1':
+            create(cur)
+            conn.commit()
+        elif choose == '2':
+            read(cur)
+        elif choose == '3':
+            update(cur)
+            conn.commit()
+        elif choose == '4':
+            delete(cur)
+            conn.commit()
+        elif choose == '5':
+            view(cur)
+            conn.commit()
+        else:
+            conn.close()
+            exit()
+
+def create(cur):
+    ID = input("Enter student ID: ")
+    name = input("Enter name: ")
+    GPA = input("Enter GPA: ")
+    GraduationYear = input("Enter your Graduation Year: ")
+    Age = input("Enter your Age: ")
+    Major = input("Enter your Major: ")
+    CurrentYear = input("Enter your Current Year: ")
+    Degree = input("Enter your in progress Degree: ")
+
+
+    cur.execute("INSERT INTO Entries (ID, name, GPA, GraduationYear, Age, Major, CurrentYear, Degree) VALUES (?, ?)", (ID, name, GPA, GraduationYear, Age, Major, CurrentYear, Degree))
