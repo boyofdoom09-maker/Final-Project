@@ -52,3 +52,21 @@ def read(cur):
         return ID, name, GPA, GraduationYear, Age, Major, Degree
     else:
         return None
+
+#set up update function
+def update(cur):
+
+def delete(cur):
+# set up delete function
+
+def view(cur):
+    cur.execute("SELECT * FROM Entries")
+    rows = cur.fetchall()
+
+    print("\n--- CONTACT LIST ---")
+    for row in rows:
+        print(f"ID: {row[0]} | name: {row[1]} | GPA: {row[2]} | GraduationYear: {row[3]} | Age: {row[4]} | Major: {row[5]} | Degree: {row[6]}")
+    print("---------------------\n")
+
+if __name__ == "__main__":
+    main()
