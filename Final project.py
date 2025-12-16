@@ -12,6 +12,7 @@ def main():
             conn.commit()
         elif choose == '2':
             read(cur)
+            conn.commit()
         elif choose == '3':
             update(cur)
             conn.commit()
@@ -36,3 +37,18 @@ def create(cur):
 
 
     cur.execute("INSERT INTO Entries (ID, name, GPA, GraduationYear, Age, Major, Degree) VALUES (?, ?)", (ID, name, GPA, GraduationYear, Age, Major, Degree))
+
+def read(cur):
+    reading = input("What field do you want to read?")
+    row = cur.fetchone()
+    if row:
+        ID = row[0]
+        name = row[1]
+        GPA = row[2]
+        GraduationYear = row[3]
+        Age = row[4]
+        Major = row[5]
+        Degree = row[6]
+        return ID, name, GPA, GraduationYear, Age, Major, Degree
+    else:
+        return None
